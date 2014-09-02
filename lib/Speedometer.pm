@@ -10,11 +10,11 @@ Speedometer - An easy interface to the Benchmark module to compare the Performan
 
 =head1 VERSION
 
-Version 1.02
+Version 1.04
 
 =cut
 
-our $VERSION = '1.02';
+our $VERSION = '1.04';
 
 
 =head1 SYNOPSIS
@@ -23,7 +23,8 @@ Speedometer : An easy interface to the Benchmark module. one can compare the per
 
 use Speedometer;
        
-speedometer("file1","file2"); #by default it will run for 3 CPU seconds. or one can give third optional argument i.e(time for which the code needs to perform i.e -10 or number of iterations i.e 100000).
+speedometer("file1","file2"); #by default it will run for 3 CPU seconds. or 
+one can give third optional argument i.e(time for which the code needs to perform i.e -10 or number of iterations i.e 100000).
 
 speedometer("file1","file2",-10);
 
@@ -39,10 +40,10 @@ speedometer("file1","file2",-10);
 =head2 function1
 
 
-sub speedometer {
+1speedometer :
 
-#it takes only one two parameters by "file1", and "file2" and third parameter is optional.
-}
+it takes only one two parameters by "file1", and "file2" and third parameter is optional.
+
 =cut
 
 Kiran Rajendrasa Pawar, C<< <pawark86 at gmail.com> >>

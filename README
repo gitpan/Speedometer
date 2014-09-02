@@ -1,18 +1,7 @@
 Speedometer
 
-Speedometer : An easy interface to the Benchmark module to compare the performance of two Perl files.
-
-Speedometer uses the Benchmark module in the background to do the job. 
-
-one can use it like,
-
-use Speedometer;
-
-speedometer("file1","file2", optional arument);  #optional argument is time it need to run for like -10 CPU seconds
-or number of iterations one needs to perform. 
-
-#by default speedomter() will run for 3 CPU seconds.
-
+Speedometer module can be used to compare the performance of two Pel files.
+it uses Benchmark.pm in the background.
 
 
 INSTALLATION

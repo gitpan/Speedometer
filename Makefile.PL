@@ -1,38 +1,26 @@
 use 5.006;
 use strict;
 use warnings FATAL => 'all';
-use inc::Module::Install;
+use ExtUtils::MakeMaker;
 
-name     'Speedometer';
-all_from 'lib/Speedometer.pm';
-author   q{Kiran Rajendrasa Pawar <pawark86@gmail.com>};
-license  'artistic2';
-
-perl_version 5.006;
-
-tests_recursive('t');
-
-resources (
-   #homepage   => 'http://yourwebsitehere.com',
-   #IRC        => 'irc://irc.perl.org/#Speedometer',
-   license    => 'http://www.perlfoundation.org/artistic_license_2_0',
-   #repository => 'git://github.com/Kiran Rajendrasa Pawar/Speedometer.git',
-   bugtracker => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Speedometer',
+WriteMakefile(
+    NAME             => 'Speedometer',
+    AUTHOR           => q{Kiran Rajendrasa Pawar <pawark86@gmail.com>},
+    VERSION_FROM     => 'lib/Speedometer.pm',
+    ABSTRACT_FROM    => 'lib/Speedometer.pm',
+    LICENSE          => 'Artistic_2_0',
+    PL_FILES         => {},
+    MIN_PERL_VERSION => 5.006,
+    CONFIGURE_REQUIRES => {
+        'ExtUtils::MakeMaker' => 0,
+    },
+    BUILD_REQUIRES => {
+        'Test::More' => 0,
+    },
+    PREREQ_PM => {
+        #'ABC'              => 1.6,
+        #'Foo::Bar::Module' => 5.0401,
+    },
+    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean => { FILES => 'Speedometer-*' },
 );
-
-configure_requires (
-   'Module::Install' => 0,
-);
-
-build_requires (
-   'Test::More' => 0,
-);
-
-requires (
-   #'ABC'              => 1.6,
-   #'Foo::Bar::Module' => 5.0401,
-);
-
-install_as_cpan;
-auto_install;
-WriteAll;

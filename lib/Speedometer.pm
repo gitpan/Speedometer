@@ -1,6 +1,12 @@
 package Speedometer;
 
-use 5.006;
+use Exporter;
+@ISA = qw(Exporter);
+@EXPORT = qw(speedometer);
+
+use Benchmark qw/cmpthese timethese/;
+
+
 use strict;
 use warnings FATAL => 'all';
 
@@ -10,39 +16,125 @@ Speedometer - An easy interface to the Benchmark module to compare the Performan
 
 =head1 VERSION
 
-Version 1.05
+Version 1.06
 
 =cut
 
-our $VERSION = '1.05';
+our $VERSION = '1.06';
+
+
 
 
 =head1 SYNOPSIS
 
 Speedometer : An easy interface to the Benchmark module. one can compare the performance of two Perl files.like this,
-
 use Speedometer;
 
 speedometer("file1","file2"); #by default it will run for 3 CPU seconds.
 
 or one can give third optional argument i.e(time for which the code needs to perform i.e -10 or number of iterations i.e 100000).
 
-speedometer("file1","file2",-10);
-
-=head1 EXPORT
-
-1. speedometer : Speedometer.pm export only one function speedometer.
+speedometer("file1","file2",-10)
 
 =head1 SUBROUTINES/METHODS
 
+1. speedometer : Speedometer.pm export only one function speedometer.
+
+
 =head2 function1
- 
-speedometer :
-
-it takes only one two arguments by "file1", and "file2" and third argument is optional.
-
 
 =cut
+
+sub speedometer;
+
+
+sub speedometer($$;$){ 
+
+my ($script1, $script2, $count) = @_;
+
+
+unless ($#ARGV <= 3) {
+    
+	die "usage: Script1, Script2 and optional paramter is Time/Iterations,  $!\n";
+
+}
+
+
+
+$count = 0 if !$count;
+
+
+#print "SCRIPT1 : $script1\n";
+#print "SCRIPT2 : $script2\n";
+ 
+my $data1 = read_file($script1);
+my $data2 = read_file($script2);
+
+my $code1 = eval $data1; print $@, die if $@;
+my $code2 = eval $data2; print $@, die if $@;
+
+
+#print "CODE1 : $code1\n";
+#print "CODE2 : $code2\n"; 
+ 
+
+  my $result = timethese(
+      $count,
+      {
+          $script1 => sub{
+          
+          $code1->();
+          
+          
+          },
+ 
+         $script2 => sub{
+           
+          $code2->();
+            
+          },
+      }
+  );
+  
+print "\n";
+ 
+cmpthese($result);
+
+print "......................................Speedometer\n";
+
+}
+
+=head2 function2
+
+=cut
+#read_file subroutine.
+
+
+sub read_file{
+
+my $filename = shift;
+
+my $data;
+
+open my $fh, "$filename" or die "file couldn't open $!\n";
+   
+while(my $line = <$fh>){
+    
+next if $line=~/^\#/;
+
+$data .= $line;   
+    
+}
+
+close $fh;
+   
+$data = "sub{".$data."}";
+
+#print "$data\n";    
+
+return $data;
+    
+}
 
 
 

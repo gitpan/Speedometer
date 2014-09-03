@@ -1,54 +1,52 @@
 package Speedometer;
+$VERSION = 0.01;
 
 use Exporter;
 @ISA = qw(Exporter);
 @EXPORT = qw(speedometer);
+use 5.006;
 
+use warnings;
+use strict;
 use Benchmark qw/cmpthese timethese/;
 
 
-use strict;
-use warnings FATAL => 'all';
 
 =head1 NAME
 
-Speedometer - An easy interface to the Benchmark module to compare the Performance of two Perl files.
-
+Speedometer - An easy interface to the Benchmark moudule to compare the performance of two Perl files.
+ 
 =head1 VERSION
 
-Version 1.06
-
-=cut
-
-our $VERSION = '1.06';
-
-
-
+Version 0.01
 
 =head1 SYNOPSIS
 
-Speedometer : An easy interface to the Benchmark module. one can compare the performance of two Perl files.like this,
+Speedometer compares the performance of two Perl files.
+
+one can use it like this;
+
 use Speedometer;
 
 speedometer("file1","file2"); #by default it will run for 3 CPU seconds.
 
-or one can give third optional argument i.e(time for which the code needs to perform i.e -10 or number of iterations i.e 100000).
+or one can give third optional argument which is the time/number of iterations one want perform. i.e (-10 or 1_000_000);
 
-speedometer("file1","file2",-10)
+speedometer("file1","file2",-10); 
+
+=head1 EXPORT
+
+Speedometer exports one function called speedometer.
 
 =head1 SUBROUTINES/METHODS
 
-1. speedometer : Speedometer.pm export only one function speedometer.
+=head2 speedometer($script1, $script2, $count) 
 
-
-=head2 function1
+return $result
 
 =cut
 
-sub speedometer;
-
-
-sub speedometer($$;$){ 
+sub speedometer{ 
 
 my ($script1, $script2, $count) = @_;
 
@@ -104,11 +102,11 @@ print "......................................Speedometer\n";
 
 }
 
-=head2 function2
+=head2 read_file($filename)
+
+returns $data.
 
 =cut
-#read_file subroutine.
-
 
 sub read_file{
 
@@ -137,10 +135,10 @@ return $data;
 }
 
 
-
 =head1 AUTHOR
 
 Kiran Rajendrasa Pawar, C<< <pawark86 at gmail.com> >>
+
 
 =head1 BUGS
 
@@ -228,3 +226,4 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 =cut
 
 1; # End of Speedometer
+

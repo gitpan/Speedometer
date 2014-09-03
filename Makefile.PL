@@ -18,8 +18,7 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
-        'Benchmark'              => 1.18,
-        #'Foo::Bar::Module' => 5.0401,
+        'Benchmark'              => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Speedometer-*' },

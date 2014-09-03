@@ -1,5 +1,5 @@
 package Speedometer;
-$VERSION = 0.01;
+$VERSION = 1.07;
 
 use Exporter;
 @ISA = qw(Exporter);
@@ -18,7 +18,7 @@ Speedometer - An easy interface to the Benchmark moudule to compare the performa
  
 =head1 VERSION
 
-Version 0.01
+Version 1.07
 
 =head1 SYNOPSIS
 
